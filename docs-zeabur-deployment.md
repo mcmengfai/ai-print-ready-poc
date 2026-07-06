@@ -57,7 +57,7 @@ If integrating into the existing Hermes Zeabur image, add the apt packages from 
 
 ## Verification after deploy
 
-Run inside the built container:
+Run inside the built container after deployment:
 
 ```bash
 scripts/check_prepress_tools.sh
@@ -65,6 +65,8 @@ uv run pytest -q
 uv run python examples/create_demo_image.py
 uv run ai-print-ready convert examples/demo-poster.png --preset A1-poster --job-name verify --overwrite --upscale auto
 ```
+
+Note: `scripts/check_prepress_tools.sh` is intentionally a post-deploy runtime verification step, not a Docker build blocker. The Dockerfile only runs `uv run pytest -q` during build so Zeabur can build even when ICC profiles are mounted later at runtime.
 
 Then confirm:
 

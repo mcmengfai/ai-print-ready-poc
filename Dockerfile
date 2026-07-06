@@ -28,8 +28,7 @@ COPY scripts ./scripts
 
 RUN chmod +x scripts/check_prepress_tools.sh \
     && uv sync --extra dev \
-    && uv run pytest -q \
-    && scripts/check_prepress_tools.sh
+    && uv run pytest -q
 
 VOLUME ["/app/print_jobs"]
 ENTRYPOINT ["uv", "run", "ai-print-ready"]
