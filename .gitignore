@@ -16,6 +16,9 @@ print_jobs/*
 !print_jobs/.gitkeep
 *.zip
 
+# Local deploy/auth material
+.deploy-keys/
+
 # OS/editor
 .DS_Store
 .vscode/
