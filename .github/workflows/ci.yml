@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Install dependencies
+        run: uv sync --extra dev
+      - name: Run tests
+        run: uv run pytest -q
+      - name: Smoke demo
+        run: |
+          uv run python examples/create_demo_image.py
+          uv run ai-print-ready convert examples/demo-poster.png --preset A1-poster --job-name ci-demo --overwrite --upscale auto
+          test -s print_jobs/ci-demo/analysis/preflight-report.md
+          test -s print_jobs/ci-demo/output/print-canvas-rgb.pdf
+
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t ai-print-ready:ci .

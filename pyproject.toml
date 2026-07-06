@@ -1,0 +1,25 @@
+[project]
+name = "ai-print-ready"
+version = "0.1.0"
+description = "PoC CLI for AI image print-readiness analysis and output packaging"
+requires-python = ">=3.11"
+dependencies = [
+  "pillow>=10.0.0",
+  "typer>=0.12.0",
+  "rich>=13.0.0",
+  "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0"]
+
+[project.scripts]
+ai-print-ready = "ai_print_ready.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
