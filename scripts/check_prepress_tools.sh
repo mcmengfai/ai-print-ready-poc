@@ -36,7 +36,7 @@ echo "== ICC profiles found =="
 count=$(find /usr/share/color /usr/local/share/color -type f \( -iname '*.icc' -o -iname '*.icm' \) 2>/dev/null | wc -l | tr -d ' ')
 echo "ICC_COUNT=$count"
 if [ "$count" -eq 0 ]; then
-  echo "No ICC profiles found; install/add printer ICC profiles."
-  exit 1
+  echo "WARN No ICC profiles found in system paths. This is not a build blocker; mount printer profiles under /profiles or /app/profiles at runtime."
+  exit 0
 fi
 find /usr/share/color /usr/local/share/color -type f \( -iname '*.icc' -o -iname '*.icm' \) 2>/dev/null | head -n 20

@@ -68,6 +68,7 @@ uv run ai-print-ready convert examples/demo-poster.png --preset A1-poster --job-
 
 Then confirm:
 
+- the script exits successfully even if no system ICC profile is installed; missing profiles are a runtime warning, not a build blocker
 - `analysis/preflight-report.md` exists
 - `output/print-canvas-rgb.pdf` exists
 - `output/image-cmyk-pillow-fallback.tif` exists, or `output/image-cmyk-icc.tif` if an ICC profile was supplied
