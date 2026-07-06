@@ -12,7 +12,6 @@ RUN apt-get update \
       qpdf \
       poppler-utils \
       libimage-exiftool-perl \
-      icc-profiles \
       icc-profiles-free \
       file \
       ca-certificates \
@@ -21,7 +20,7 @@ RUN apt-get update \
 RUN pip install --no-cache-dir uv
 
 WORKDIR /app
-COPY pyproject.toml README.md ./
+COPY pyproject.toml uv.lock README.md ./
 COPY src ./src
 COPY tests ./tests
 COPY examples ./examples

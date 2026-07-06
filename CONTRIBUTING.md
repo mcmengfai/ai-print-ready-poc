@@ -16,7 +16,7 @@ uv run ai-print-ready convert examples/demo-poster.png --preset A1-poster --job-
 For ICC-managed CMYK and CMYK PDF candidate output, use the Dockerfile or install:
 
 ```bash
-imagemagick ghostscript qpdf poppler-utils exiftool icc-profiles icc-profiles-free
+imagemagick ghostscript qpdf poppler-utils exiftool icc-profiles-free
 ```
 
 Run:

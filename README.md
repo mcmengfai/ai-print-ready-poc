@@ -33,7 +33,7 @@ On a system where you have root access:
 
 ```bash
 sudo apt-get update
-sudo apt-get install -y imagemagick ghostscript qpdf poppler-utils exiftool icc-profiles icc-profiles-free
+sudo apt-get install -y imagemagick ghostscript qpdf poppler-utils exiftool icc-profiles-free
 ```
 
 This current Hermes container did not allow apt installation, so the first runnable version uses Python/Pillow fallbacks. For a full prepress toolchain, use the included `Dockerfile` and see `docs-zeabur-deployment.md`. For profile selection, see `docs-icc-profile-strategy.md`.

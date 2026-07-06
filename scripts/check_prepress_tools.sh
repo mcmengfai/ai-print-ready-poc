@@ -2,7 +2,7 @@
 set -euo pipefail
 
 echo "== Required binaries =="
-for c in python uv magick gs qpdf pdfinfo pdftoppm exiftool; do
+for c in python uv gs qpdf pdfinfo pdftoppm exiftool; do
   if command -v "$c" >/dev/null 2>&1; then
     printf 'OK   %-10s %s\n' "$c" "$(command -v "$c")"
   else
@@ -11,8 +11,22 @@ for c in python uv magick gs qpdf pdfinfo pdftoppm exiftool; do
   fi
 done
 
+if command -v magick >/dev/null 2>&1; then
+  IM_BIN=magick
+elif command -v convert >/dev/null 2>&1; then
+  IM_BIN=convert
+else
+  echo "MISS ImageMagick (expected magick or convert)"
+  exit 1
+fi
+printf 'OK   %-10s %s\n' "imagemagick" "$(command -v "$IM_BIN")"
+
 echo "== Versions =="
-magick -version | head -n 2
+if [ "$IM_BIN" = "magick" ]; then
+  magick -version | head -n 2
+else
+  convert -version | head -n 2
+fi
 gs --version
 qpdf --version | head -n 1
 pdfinfo -v 2>&1 | head -n 1

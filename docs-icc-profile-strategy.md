@@ -60,7 +60,6 @@ Preferred for real jobs. Ask the print shop:
 The Dockerfile installs:
 
 ```bash
-icc-profiles
 icc-profiles-free
 ```
 
